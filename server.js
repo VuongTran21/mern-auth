@@ -16,6 +16,8 @@ app.use(
 
 app.use(bodyParse.json());
 
+app.use(express.static('client/build'));
+
 // connect DB
 const db = require('./config/keys').mongoURI;
 
