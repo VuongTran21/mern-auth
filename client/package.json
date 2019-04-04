@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://mern-auth-demo.herokuapp.com",
+  "proxy": "https://fast-sierra-74303.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },
