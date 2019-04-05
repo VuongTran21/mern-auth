@@ -14,6 +14,8 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import store from './store';
 
+// axios.defaults.baseURL = (process.env.NODE_ENV !== 'production') ? 'http://localhost:5003' : '';
+
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
     // Set auth token header auth
@@ -25,7 +27,6 @@ if (localStorage.jwtToken) {
     store.dispatch(setCurrentUser(decoded));
     // Check for expired token
     const currentTime = Date.now() / 1000; // to get in milliseconds
-    console.log('current time', decoded.exp + '===' + currentTime);
     if (decoded.exp < currentTime) {
         // Logout user
         store.dispatch(logoutUser());
