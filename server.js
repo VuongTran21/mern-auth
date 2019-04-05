@@ -19,11 +19,6 @@ app.use(
 );
 
 app.use(bodyParse.json());
-app.use(express.static(path.join(__dirname, '/client/build')));
-
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
 
 // connect DB
 const mongodbUri = process.env.NODE_ENV === 'production' ? process.env.MLAB_MONGODB_URL : process.env.LOCAL_MONGODB_URL;
@@ -42,6 +37,19 @@ app.use(passport.initialize());
 
 // passport config
 require('./config/passport')(passport);
+
+// Enable CORS on server
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.use(express.static(path.join(__dirname, '/client/build')));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 
 // routes
 app.use('/api/users', users);

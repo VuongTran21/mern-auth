@@ -8,10 +8,12 @@ import {
     USER_LOADING
 } from './types';
 
+let apiUrl = 'http://localhost:5003';
+
 // Register User
 export const registerUser = (userData, history) => dispatch => {
     axios
-        .post("/api/users/register", userData)
+        .post(apiUrl + "/api/users/register", userData)
         .then(res => history.push("/login")) // re-direct to login on successful register
         .catch(err =>
             dispatch({
@@ -24,7 +26,7 @@ export const registerUser = (userData, history) => dispatch => {
 // login - get user token
 export const loginUser = userData => dispatch => {
     axios
-        .post('/api/users/login', userData)
+        .post(apiUrl + '/api/users/login', userData)
         .then(res => {
             // save to localStorage, set token to localStorage
             const { token } = res.data;
