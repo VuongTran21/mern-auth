@@ -7,6 +7,9 @@ const users = require('./routes/api/users');
 
 const app = express();
 
+// load env 
+require('dotenv').config();
+
 // middleware
 app.use(
     bodyParse.urlencoded({
@@ -16,13 +19,11 @@ app.use(
 
 app.use(bodyParse.json());
 
-app.use(express.static('client/build'));
-
 // connect DB
-const db = require('./config/keys').mongoURI;
+const mongodbUri = process.env.NODE_ENV === 'production' ? process.env.MLAB_MONGODB_URL : process.env.LOCAL_MONGODB_URL;
 
 mongoose.connect(
-    db,
+    mongodbUri,
     {
         useNewUrlParser: true
     }
