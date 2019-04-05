@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParse = require('body-parser');
 const passport = require('passport');
+const path = require('path');
 
 const users = require('./routes/api/users');
 
@@ -18,6 +19,11 @@ app.use(
 );
 
 app.use(bodyParse.json());
+app.use(express.static(path.join(__dirname, '/client/build')));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 
 // connect DB
 const mongodbUri = process.env.NODE_ENV === 'production' ? process.env.MLAB_MONGODB_URL : process.env.LOCAL_MONGODB_URL;
