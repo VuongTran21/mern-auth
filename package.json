@@ -10,7 +10,7 @@
     "client-install": "npm install --prefix client",
     "client": "npm start --prefix client",
     "dev": "NODE_ENV=development concurrently \"npm run server\" \"npm run client\" ",
-    "prod": "NODE_ENV=production node server.js"
+    "prod": "NODE_ENV=production PORT=3002 node server.js"
   },
   "author": "",
   "license": "ISC",
