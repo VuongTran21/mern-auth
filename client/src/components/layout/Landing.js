@@ -36,7 +36,7 @@ class Landing extends Component {
                                 borderRadius: "3px",
                                 letterSpacing: "1.5px"
                             }}
-                            className="btn btn-large waves-effect white hoverable black-text"
+                            className="btn btn-large waves-effect white hoverable black-text login-custom"
                         >
                             Log In
                         </Link>
